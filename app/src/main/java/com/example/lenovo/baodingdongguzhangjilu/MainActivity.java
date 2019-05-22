@@ -1,6 +1,7 @@
 package com.example.lenovo.baodingdongguzhangjilu;
 
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -10,7 +11,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListPopupWindow;
+import android.text.InputType;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView chakan;
     private long exitTime = 0;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         testNetwork();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// HH:mm:ss
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// HH:mm:ss
 //获取当前时间
         Date date;
         date = new Date(System.currentTimeMillis());
@@ -78,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 listPopupWindow.show();//把ListPopWindow展示出来
+            }
+        });
+
+        didian.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                didian.setInputType(InputType.TYPE_NULL);
+                return false;
             }
         });
 
@@ -172,7 +184,21 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this,"网络不可用！",Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(MainActivity.this);
+
+                            alertDialogBuilder1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+
+                                }
+                            });
+
+                            AlertDialog alertDialog1 = alertDialogBuilder1.create();
+                            alertDialog1.setTitle("提示：");
+                            alertDialog1.setMessage("手机没有网络！！");
+                            alertDialog1.setCancelable(false);
+                            alertDialog1.show();
                         }
                     });
                 }

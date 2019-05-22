@@ -3,6 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/quanburadiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="全部"/>
+        <RadioButton
+            android:id="@+id/didianradiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="按地点"/>
+        <RadioButton
+            android:id="@+id/riqiradiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="按日期"/>
+        <RadioButton
+            android:id="@+id/guanjianziradiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="关键字搜索"/>
+    </RadioGroup>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +53,8 @@
         android:id="@+id/guanjianzichaxun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入关键字"/>
+        android:cursorVisible="false"
+        android:focusable="false" />
     </LinearLayout>
 
 </LinearLayout>
